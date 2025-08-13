@@ -15,6 +15,7 @@ FROM scratch
 
 # 复制编译后的二进制文件
 COPY --from=builder /app/deno-api-proxy /deno-api-proxy
+RUN chmod +x /deno-api-proxy
 
 # 暴露应用程序监听的端口
 EXPOSE 3000
