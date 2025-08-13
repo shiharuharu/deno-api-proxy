@@ -11,11 +11,10 @@ COPY index.ts .
 RUN deno compile --allow-net --allow-env --output deno-api-proxy index.ts
 
 # 使用 scratch 镜像作为最终阶段的基础镜像，以减小镜像大小
-FROM scratch
+FROM alpine:latest
 
 # 复制编译后的二进制文件
 COPY --from=builder /app/deno-api-proxy /deno-api-proxy
-RUN chmod +x /deno-api-proxy
 
 # 暴露应用程序监听的端口
 EXPOSE 3000
